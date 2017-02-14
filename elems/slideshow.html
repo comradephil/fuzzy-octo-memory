@@ -1,0 +1,32 @@
+<!-- <script src="./js/angular.min.js"></script> -->
+<script src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
+<script src="./js/slideshow.js"></script>
+<div id="slideshowarea" class="container" ng-app>
+	<div ng-controller="slideshowControl" class="container">
+		<div class="row">
+			<div ng-repeat="image in images" class="col-sm-2">
+				<img ng-src={{image.url}} class="img-thumbnail" data-title={{image.title}} data-toggle="modal" data-target="#modalimage" data-extra={{image.url}} onclick=""/>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalimage" tabindex="-1" aria-labelledby="modalImageTitle">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="modalTitle">title</h4>
+				</div>
+				<div class="modal-body">      	
+					<img class="img-responsive" src=""/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>$('#modalimage').on('show.bs.modal', function (event) {
+		var image = $(event.relatedTarget);
+		var modal = $(this);
+		modal.find('.modal-title').text(image.data('title'));
+		modal.find('.modal-body img').attr('src',image.data('extra'));
+	});</script>
+</div>
